@@ -1,12 +1,13 @@
-import React from 'react';
+"use client";
+
+import React from "react";
 
 const ErrorPage = () => {
-    return (
-        <div>
-            <h1>Something went wrong!</h1>
-            
-        </div>
-    );
+  return (
+    <div>
+      <h1>Something went wrong!</h1>
+    </div>
+  );
 };
 
 export default ErrorPage;
