@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
+import { Space, Spin } from "antd";
 
 const Loading = () => {
-    return (
-        <div>
-            <h1>Loading ..........</h1>
-        </div>
-    );
+  return (
+    <Space size="large">
+      <Spin size="default" />
+      <h2>Loading.....</h2>
+    </Space>
+  );
 };
 
 export default Loading;

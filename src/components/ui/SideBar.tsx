@@ -50,8 +50,10 @@ const SideBar = () => {
   const [collapsed, setCollapsed] = useState(false);
 
 //   for role//
-const role = USER_ROLE.ADMIN
-// const role = USER_ROLE.STUDENT
+// const role = USER_ROLE.SUPER_ADMIN
+// const role = USER_ROLE.ADMIN
+// const role = USER_ROLE.FACULTY
+const role = USER_ROLE.STUDENT
 
   return (
     <Sider
