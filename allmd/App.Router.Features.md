@@ -10,6 +10,7 @@ create a layout >>
 
 **create folder (app>(withlayout)>layout.tsx)**
 
+```js
     import React from "react";
 
     const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -18,6 +19,7 @@ create a layout >>
     };
 
     export default DashboardLayout;
+```
 
 **nexted page or routes under the Layout (app>(withlayout)>student>page.tsx)**
 

@@ -6,6 +6,7 @@
 
 #### created src>redux.store.ts :::
 
+  ```js
     import { configureStore } from "@reduxjs/toolkit";
     import { reducer } from "./rootReducers";
 
@@ -17,13 +18,14 @@
 
     export type RootState = ReturnType<typeof store.getState>
 
-    export type AppDispatch = typeof store.dispatch
+    export type AppDispatch = typeof store.dispatch```
 
 #### created src>rooReducers.ts :::
 
         export const reducer = {};
 
 #### created src>hooks.ts ::: (for TS)
+```js
 
     import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
     import type { RootState, AppDispatch } from './store'
@@ -31,9 +33,11 @@
     // Use throughout your app instead of plain `useDispatch` and `useSelector`
     export const useAppDispatch: () => AppDispatch = useDispatch
     export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
+```
 
 #### created src>lib>Providers.tsx :::
 
+   ```js
     "use client";
 
     import { store } from "@/redux/store";
@@ -52,14 +56,16 @@
     );
     };
 
-    export default Providers;
+    export default Providers;```
 
 #### created src>app.layout.tsx :::
+      ```js
         <Providers>
             <html lang="en">
             <body className={inter.className}>{children}</body>
             </html>
         </Providers>
+      ```
 
 #### created src>slice>userSlice.ts :::
 

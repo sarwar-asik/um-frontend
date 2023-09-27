@@ -74,7 +74,7 @@ const role = USER_ROLE.STUDENT
         //  className="demo-logo-vertical"
         style={{
           color: "white",
-          fontSize: "1.5rem",
+          fontSize: "1.5em",
           textAlign: "center",
           fontFamily: "serif",
           marginBottom: "1rem",

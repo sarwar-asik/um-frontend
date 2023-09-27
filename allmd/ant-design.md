@@ -6,7 +6,8 @@
 
 ##### src>lib>AntdRegistry.tsx>>>
 
-    'use client';
+```ts
+ 'use client';
 
     import React from 'react';
     import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
@@ -23,8 +24,12 @@
 
     export default StyledComponentsRegistry;
 
+```
+
 #### wraffed with ant design src>lib>Providers.ts (with redux) >>>
 
+```js
     <Provider store={store}>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
     </Provider>
+```
