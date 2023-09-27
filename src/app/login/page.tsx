@@ -20,19 +20,25 @@ const LoginPage = () => {
     } catch (error) {}
   };
   return (
-    <Row>
-      <Col sm={12} md={16} lg={16}>
+    <Row 
+    align="middle"
+    justify="center"
+    style={{
+    
+    }}
+    >
+      <Col sm={12} md={16} lg={10}>
         <Image src={loginBanner} width={500} alt="login-image" />
       </Col>
 
       <Col sm={12} md={8} lg={8}>
-        <h1>First login your account</h1>
+        <h1 style={{margin:"1em 0px"}}>First login your account</h1>
         <div className="">
           <Form submitHandler={onSubmit}>
-            <div>
+            <div style={{margin:"15px 0px"}}>
               <FormInput type="text" name="id" size="large" label="User Id" />
             </div>
-            <div>
+            <div style={{margin:"15px 0px"}}>
               <FormInput
                 type="password"
                 name="password"
