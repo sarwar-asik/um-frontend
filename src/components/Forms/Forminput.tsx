@@ -3,7 +3,6 @@
 import { Input } from "antd";
 import React from "react";
 import { Controller, useForm, useFormContext } from "react-hook-form";
-
 interface IInput {
   type?: string;
   name: string;
