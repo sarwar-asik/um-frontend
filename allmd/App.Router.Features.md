@@ -19,6 +19,8 @@ create a layout >>
     };
 
     export default DashboardLayout;
+
+
 ```
 
 **nexted page or routes under the Layout (app>(withlayout)>student>page.tsx)**
