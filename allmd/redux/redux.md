@@ -35,9 +35,9 @@
     export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
 ```
 
-#### created src>lib>Providers.tsx :::
+#### wrapped the project with store of Redux src>lib>Providers.tsx :::
 
-   ```js
+```js
     "use client";
 
     import { store } from "@/redux/store";
@@ -56,17 +56,24 @@
     );
     };
 
-    export default Providers;```
+    export default Providers
+    
+```
 
-#### created src>app.layout.tsx :::
-      ```js
+####  use the Provider for global app src>app.layout.tsx :::
+```js
         <Providers>
             <html lang="en">
             <body className={inter.className}>{children}</body>
             </html>
         </Providers>
-      ```
+```
 
-#### created src>slice>userSlice.ts :::
+
+
+####   POst data for Login >>>   redux-axios-md > go 
+
+
+
 
 

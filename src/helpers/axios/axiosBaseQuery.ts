@@ -13,6 +13,7 @@ export const axiosBaseQuery =
       data?: AxiosRequestConfig['data']
       params?: AxiosRequestConfig['params']
       meta?:IMeta
+      contentType?:string ///! for application/json
     },
     unknown,
     unknown
