@@ -1,8 +1,8 @@
 export const setToLocalStorage = (key: string, token: string) => {
-  console.log(
-    "🚀 ~ file: local-storage.ts:2 ~ setToLocalStorage ~ token:",
-    token
-  );
+  // console.log(
+  //   "🚀 ~ file: local-storage.ts:2 ~ setToLocalStorage ~ token:",
+  //   token
+  // );
   if (!key || typeof window === "undefined") {
     return "";
   }
@@ -11,7 +11,7 @@ export const setToLocalStorage = (key: string, token: string) => {
 
 
 export const getFromLocalStorage = (key: string) => {
-    console.log("🚀 ~ file: local-storage.ts:14 ~ getFromLocalStorage ~ key:", key)
+    // console.log("🚀 ~ file: local-storage.ts:14 ~ getFromLocalStorage ~ key:", key)
     
     if (!key || typeof window === "undefined") {
       return "";

@@ -27,11 +27,10 @@ const LoginPage = () => {
     try {
       // console.log(data);
       const res = await userLogin({ ...data }).unwrap()
-      // console.log("🚀 ~ file: page.tsx res:", res);
-      storeUserInfo({accessToken:res?.data?.accessToken})
-      if(res?.data?.accessToken){
+      console.log("🚀 ~ file: page.tsx res:", res);
+      storeUserInfo({accessToken:res?.accessToken})
+      if(res?.accessToken){
         router.push("profile")
-
       }
 
     } catch (error) {
