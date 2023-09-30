@@ -11,6 +11,7 @@ import type { MenuProps } from "antd";
 import { Layout, Menu } from "antd";
 import  { sidebarItems } from "@/constants/sidebarItems";
 import { USER_ROLE } from "@/constants/role";
+import { getUserInfo } from "@/service/auth.service";
 const { Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -53,7 +54,9 @@ const SideBar = () => {
 // const role = USER_ROLE.SUPER_ADMIN
 // const role = USER_ROLE.ADMIN
 // const role = USER_ROLE.FACULTY
-const role = USER_ROLE.STUDENT
+// const role = USER_ROLE.STUDENT
+const {role} = getUserInfo() as any
+console.log(role,"role of user");
 
   return (
     <Sider
