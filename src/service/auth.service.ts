@@ -24,3 +24,8 @@ export const isLoggedIn = ()=>{
     //! important !! used for if  authLocalStorageToken  is stay it will return true
      return !! authLocalStorageToken
 }
+
+
+export const removeUserInfo =(key:string)=>{
+    return localStorage.removeItem(key)
+}
