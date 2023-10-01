@@ -1,12 +1,14 @@
 import React from "react";
-import { Space, Spin } from "antd";
+import { Row, Space, Spin } from "antd";
 
 const Loading = () => {
   return (
-    <Space size="large">
-      <Spin size="default" />
+    <Row justify="center" align='middle' style={{height:"100vh"}} >
+      <Space  size="large">
+      <Spin size="large" />
       <h2>Loading.....</h2>
     </Space>
+    </Row>
   );
 };
 

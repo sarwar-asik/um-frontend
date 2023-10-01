@@ -4,7 +4,7 @@ import { Layout, MenuProps, Button, Dropdown, Row, Space, Avatar } from "antd";
 
 const { Header: AntHeader } = Layout;
 import { UserOutlined } from "@ant-design/icons";
-import { removeUserInfo } from "@/service/auth.service";
+import { getUserInfo, removeUserInfo } from "@/service/auth.service";
 import { authKey } from "@/constants/storagekey";
 import { useRouter } from "next/navigation";
 
@@ -17,6 +17,8 @@ const Header = () => {
     removeUserInfo(authKey);
     router.push("/login")
   };
+  const user= getUserInfo()  as any
+  // console.log(user,"user");
 
   const items: MenuProps["items"] = [
     {
@@ -38,6 +40,7 @@ const Header = () => {
           height: "100%",
         }}
       >
+        <h4>{user?.role&& user?.role}</h4>
         <Dropdown
           menu={{ items }}
           // placement="bottom"
