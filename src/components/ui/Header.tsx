@@ -1,7 +1,7 @@
+"use client";
 import React from "react";
 
 import { Layout, MenuProps, Button, Dropdown, Row, Space, Avatar } from "antd";
-
 const { Header: AntHeader } = Layout;
 import { UserOutlined } from "@ant-design/icons";
 import { getUserInfo, removeUserInfo } from "@/service/auth.service";
@@ -31,6 +31,7 @@ const Header = () => {
     },
   ];
 
+  
   return (
     <AntHeader style={{ background: "white" }}>
       <Row
