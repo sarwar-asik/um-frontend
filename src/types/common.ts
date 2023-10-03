@@ -4,11 +4,10 @@ export interface IMeta {
   total: number;
 }
 
-
-export  type ResponseSuccessType ={
-  data:any;
-  meta?:IMeta
-}
+export type ResponseSuccessType = {
+  data: any;
+  meta?: IMeta;
+};
 
 export type IGenericResponse<T> = {
   meta: {
@@ -24,13 +23,8 @@ export type IGenericErrorMessage = {
   message: string;
 };
 
-
-
-
 export type IGenericErrorResponse = {
   statusCode: number;
   message: string;
   errorMessages: IGenericErrorMessage[];
 };
-
-
