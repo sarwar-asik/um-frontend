@@ -3,7 +3,7 @@ import Form from "@/components/Forms/Form";
 import FormSelectField from "@/components/Forms/FormSelectFields";
 import FormInput from "@/components/Forms/Forminput";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { genderOptions } from "@/constants/global";
+import { departmentOptions, genderOptions } from "@/constants/global";
 import { getUserInfo } from "@/service/auth.service";
 import { Button, Col, Row } from "antd";
 import { useRouter } from "next/navigation";
@@ -104,12 +104,24 @@ const CreateAdminPage = () => {
                   label="Password"
                 />
               </Col>
+              {/*// ! select dynamic */}
               <Col className="gutter-row" style={{
                 marginBottom:"20px"
               }} span={8}>
                <FormSelectField name="admin.gender"  size="large"
                label="Gender"
                options={genderOptions}
+               placeholder="Select"
+               />
+              </Col>
+
+              <Col className="gutter-row" style={{
+                marginBottom:"20px"
+              }} span={8}>
+               <FormSelectField name="admin.managementDepartment"  size="large"
+               label="Department"
+               options={departmentOptions}
+               placeholder="Select"
                />
               </Col>
             </Row>

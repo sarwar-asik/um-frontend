@@ -1,15 +1,20 @@
 export const genderOptions = [
-    {
-        labeL:"Male",
-        value:"male"
-    },
-    {
-        labeL:"Female",
-        value:"female"
-    },
-    {
-        labeL:"Others",
-        value:"others"
-    },
+  {
+    label: "Male",
+    value: "male",
+  },
+  {
+    label: "Female",
+    value: "female",
+  },
+  {
+    label: "Others",
+    value: "others",
+  },
+];
 
+export const departmentOptions = [
+    { label: "HR", value: "hr manager" },
+    { label: "Finance", value: "finance" },
+    { label: "Management Department", value: "managementDepartment" }
 ];
