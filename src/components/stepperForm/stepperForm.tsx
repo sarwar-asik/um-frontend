@@ -11,8 +11,9 @@ interface ISteps {
 
 interface IStepsProps {
   steps: ISteps[];
+  submitHandler: (el: any) => void;
 }
-const StepperForm = ({ steps }: IStepsProps) => {
+const StepperForm = ({ steps, submitHandler }: IStepsProps) => {
   const [current, setCurrent] = useState(0);
 
   const next = () => {
@@ -23,18 +24,25 @@ const StepperForm = ({ steps }: IStepsProps) => {
     setCurrent(current - 1);
   };
 
-  const items = steps.map((item) => ({ key: item.title, title: item.title }));
+  const items = steps?.map((item) => ({ key: item.title, title: item.title }));
 
   const methods = useForm();
+
+  const { handleSubmit, reset } = methods;
+
+  const handleStudentOnSubmit = (data: any) => {
+    submitHandler(data);
+    reset();
+  };
 
   return (
     <>
       <Steps current={current} items={items} />
       <FormProvider {...methods}>
-        <form>
-          <div>{steps[current].content}</div>
+        <form onSubmit={handleSubmit(handleStudentOnSubmit)}>
+          <div>{steps[current]?.content}</div>
           <div style={{ marginTop: 24 }}>
-            {current < steps.length - 1 && (
+            {current < steps?.length - 1 && (
               <Button type="primary" onClick={() => next()}>
                 Next
               </Button>
@@ -42,13 +50,14 @@ const StepperForm = ({ steps }: IStepsProps) => {
             {current === steps.length - 1 && (
               <Button
                 type="primary"
-                onClick={() => message.success("Processing complete!")}
+                onClick={() => message.success("Student create complete!")}
+                htmlType="submit"
               >
                 Done
               </Button>
             )}
             {current > 0 && (
-              <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+              <Button style={{ margin: "0 8px" }} onClick={() => prev()} >
                 Previous
               </Button>
             )}
