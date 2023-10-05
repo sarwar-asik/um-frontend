@@ -30,7 +30,7 @@ const CreateAdminPage = () => {
     try {
       console.log(data);
     } catch (error) {
-      console.error(error, "for login submit...");
+      console.error(error, "for create admiin...");
     }
   };
 

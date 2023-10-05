@@ -1,5 +1,4 @@
 "use client";
-
 import { Input } from "antd";
 import React from "react";
 import { Controller, useForm, useFormContext } from "react-hook-form";
@@ -24,7 +23,7 @@ const FormInput = ({
   value,
   label,
 }: IInput) => {
-  const { control } = useFormContext();
+  const { control } = useFormContext() 
 
 
   return (

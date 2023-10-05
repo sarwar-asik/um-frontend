@@ -1,3 +1,7 @@
+import GuardianInfo from "@/components/StudentForms/GuardianInfo";
+import LocalGuardianInfo from "@/components/StudentForms/LocalGuardianInfo";
+import StudentBasicInfo from "@/components/StudentForms/StudentBasicInfo";
+import StudentInfo from "@/components/StudentForms/StudentInfo";
 import StepperForm from "@/components/stepperForm/stepperForm";
 import React from "react";
 
@@ -5,15 +9,19 @@ const CreateStudentPage = () => {
   const steps = [
     {
       title: "Student Information",
-      content: "Student Information-content",
+      content: <StudentInfo />,
     },
     {
-      title: "Second",
-      content: "Second-content",
+      title: "Basic Info",
+      content: <StudentBasicInfo />,
     },
     {
-      title: "Last",
-      content: "Last-content",
+      title: "Guardian Information",
+      content: <GuardianInfo />,
+    },
+    {
+      title: "Local Guardian Information",
+      content: <LocalGuardianInfo />,
     },
   ];
   return (
