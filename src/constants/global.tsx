@@ -18,3 +18,16 @@ export const departmentOptions = [
     { label: "Finance", value: "finance" },
     { label: "Management Department", value: "managementDepartment" }
 ];
+export const bloodGroupOptions = [
+    { label: "AB+", value: "AB+ manager" },
+    { label: "AB-", value: "AB- manager" },
+    { label: "A+", value: "A+ manager" },
+    { label: "A-", value: "A- manager" },
+    { label: "B+", value: "B+ manager" },
+    { label: "B-", value: "B- manager" },
+    { label: "O+", value: "O+ manager" },
+    { label: "O-", value: "O- manager" },
+ 
+];
+
+
