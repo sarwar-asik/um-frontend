@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, message, Steps, theme } from "antd";
 import { FormProvider, useForm } from "react-hook-form";
+import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
+import { useRouter } from "next/navigation";
 
 interface ISteps {
   title?: string;
@@ -12,9 +14,19 @@ interface ISteps {
 interface IStepsProps {
   steps: ISteps[];
   submitHandler: (el: any) => void;
+  navigateLink?: string;
 }
-const StepperForm = ({ steps, submitHandler }: IStepsProps) => {
-  const [current, setCurrent] = useState(0);
+const StepperForm = ({ steps, submitHandler, navigateLink }: IStepsProps) => {
+  const router = useRouter();
+  const [current, setCurrent] = useState<number>(
+    !!getFromLocalStorage("step")
+      ? Number(JSON.parse(getFromLocalStorage("step") as string).step)
+      : 0
+  );
+
+  useEffect(() => {
+    setToLocalStorage("step", JSON.stringify({ step: current }));
+  }, [current]);
 
   const next = () => {
     setCurrent(current + 1);
@@ -33,6 +45,8 @@ const StepperForm = ({ steps, submitHandler }: IStepsProps) => {
   const handleStudentOnSubmit = (data: any) => {
     submitHandler(data);
     reset();
+    setToLocalStorage("step", JSON.stringify({ step: 0 }));
+    navigateLink && router.push(navigateLink);
   };
 
   return (
@@ -50,14 +64,14 @@ const StepperForm = ({ steps, submitHandler }: IStepsProps) => {
             {current === steps.length - 1 && (
               <Button
                 type="primary"
-                onClick={() => message.success("Student create complete!")}
                 htmlType="submit"
+                onClick={() => message.success("Student create complete!")}
               >
                 Done
               </Button>
             )}
             {current > 0 && (
-              <Button style={{ margin: "0 8px" }} onClick={() => prev()} >
+              <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
                 Previous
               </Button>
             )}
