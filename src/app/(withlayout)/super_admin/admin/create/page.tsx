@@ -11,7 +11,9 @@ import {
   departmentOptions,
   genderOptions,
 } from "@/constants/global";
+import { adminSchema } from "@/schemas/admin";
 import { getUserInfo } from "@/service/auth.service";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row } from "antd";
 import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
@@ -53,7 +55,7 @@ const CreateAdminPage = () => {
       <h1>Create Admin</h1>
 
       <section>
-        <Form submitHandler={onSubmit}>
+        <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
           {/* Admin Information */}
           <div
             style={{

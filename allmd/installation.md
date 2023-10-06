@@ -8,6 +8,9 @@
          npm install react-hook-form
 
          npm i jwt-decode
+         
+         npm i yup
+         npm i @hookform/resolvers
 
 ###### for Nextjs app router >>>
 

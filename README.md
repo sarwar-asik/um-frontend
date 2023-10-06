@@ -10,3 +10,8 @@
 - Redux 
 
 - TypeScript
+
+- React hook form
+
+- yup package 
+- yup resolver
