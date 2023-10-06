@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Col, Row } from "antd";
+import { Button, Col, Row, message } from "antd";
 import loginBanner from "../../assets/login-image.png";
 import Image from "next/image";
 import Form from "@/components/Forms/Form";
@@ -17,8 +17,7 @@ type FormValues = {
 };
 
 const LoginPage = () => {
-
-  const router = useRouter()
+  const router = useRouter();
   // console.log(getUserInfo());
   // console.log(isLoggedIn());
 
@@ -26,15 +25,15 @@ const LoginPage = () => {
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
       // console.log(data);
-      const res = await userLogin({ ...data }).unwrap()
+      const res = await userLogin({ ...data }).unwrap();
       console.log("🚀 ~ file: page.tsx res:", res);
-      storeUserInfo({accessToken:res?.accessToken})
-      if(res?.accessToken){
-        router.push("profile")
+      storeUserInfo({ accessToken: res?.accessToken });
+      if (res?.accessToken) {
+        router.push("profile");
+        message.success("Login Successfully");
       }
-
     } catch (error) {
-      console.error(error,"for login submit...")
+      console.error(error, "for login submit...");
     }
   };
   return (
