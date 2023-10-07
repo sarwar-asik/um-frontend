@@ -28,7 +28,7 @@ const CreateAdminPage = () => {
   // console.log(getUserInfo());
   // console.log(isLoggedIn());
 
-  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+  const onSubmit: SubmitHandler<any> = async (data) => {
     try {
       console.log(data);
     } catch (error) {
