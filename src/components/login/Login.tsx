@@ -18,13 +18,11 @@ type FormValues = {
 
 const LoginPage = () => {
   const router = useRouter();
-  // console.log(getUserInfo());
-  // console.log(isLoggedIn());
 
   const [userLogin] = useUserLoginMutation();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      // console.log(data);
+
       const res = await userLogin({ ...data }).unwrap();
       console.log("🚀 ~ file: page.tsx res:", res);
       storeUserInfo({ accessToken: res?.accessToken });
