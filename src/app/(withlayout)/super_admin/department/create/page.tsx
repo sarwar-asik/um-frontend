@@ -5,7 +5,7 @@ import FormInput from "@/components/Forms/Forminput";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { useCreateDepartmentMutation } from "@/redux/api/deprtmentApi";
 import { getUserInfo } from "@/service/auth.service";
-import { Button } from "antd";
+import { Button, message } from "antd";
 import React from "react";
 import { SubmitHandler } from "react-hook-form";
 
@@ -15,13 +15,16 @@ const CreateDepartmentPage = () => {
 const [createDepartment] = useCreateDepartmentMutation()
 
   const onSubmit: SubmitHandler<any> = async (data) => {
+    message.loading("creating.....")
     try {
       console.log(data);
-      const res = await createDepartment({...data})
+      const res = await createDepartment(data)
       console.log(res,"ress");
+      message.success("successfully created")
 
-    } catch (error) {
+    } catch (error:any) {
       console.error(error, "for create department...");
+      message.error(error?.message)
     }
   };
   return (

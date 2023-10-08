@@ -12,7 +12,7 @@ export const getUserInfo = () => {
   // console.log(authLocalStorageToken);
   if (authLocalStorageToken) {
     const decoded = decodedToken(authLocalStorageToken);
-    console.log(decoded, "from getUserInfo");
+    // console.log(decoded, "from getUserInfo");
     return decoded;
   } else {
     return "";

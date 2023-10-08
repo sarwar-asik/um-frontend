@@ -31,7 +31,7 @@ const FormInput = ({
 
   const errorMessage = getErrorMessageByPropertyName(errors, name);
 
-  console.log(errorMessage, "from FromInput validation");
+  // console.log(errorMessage, "from FromInput validation");
 
   return (
     <>
