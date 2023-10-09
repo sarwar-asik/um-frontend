@@ -1,10 +1,10 @@
 "use client";
-
 import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
 import { USER_ROLE } from "@/constants/role";
 import { useDepartmentsQuery } from "@/redux/api/deprtmentApi";
+import { useDebounced } from "@/redux/hooks";
 import {
   EditOutlined,
   EyeOutlined,
@@ -28,8 +28,21 @@ const DepartmentPage = () => {
   query["page"] = page;
   query["sortBy"] = sortBy;
   query["sortOrder"] = sortOrder;
-  query["searchTerm"] = searchTerm;
+  // query["searchTerm"] = searchTerm;
   // console.log(query);
+
+  ///! debounced data for delay data  //
+
+  const debouncedToken = useDebounced({
+    searchQuery:searchTerm,
+    delay:600
+  })
+
+  console.log(debouncedToken);
+  if(!!debouncedToken){
+    console.log("debouncedToken",!!debouncedToken);
+    query["searchTerm"] = searchTerm;
+  }
 
   const { data, isLoading } = useDepartmentsQuery({ ...query });
 
