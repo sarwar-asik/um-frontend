@@ -1,6 +1,6 @@
 "use client";
 
-import { Table } from "antd";
+import { Button, Table } from "antd";
 import React from "react";
 
 const UMTable = () => {
@@ -14,13 +14,18 @@ const UMTable = () => {
       title: "Age",
       dataIndex: "age",
       key: "age",
+      //   sorter:true
+      sorter: (a: any, b: any) => a.age - b.age,
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Action",
+     render:function(data:any){
+        return <Button onClick={()=>console.log(data)}  type="primary" danger>X</Button>
+     }
     },
   ];
+
+
   const tableData = [
     {
       key: "1",
@@ -36,33 +41,45 @@ const UMTable = () => {
     },
     {
       key: "3",
-      name: "Mike",
+      name: "Tike",
       age: 32,
       address: "10 Downing Street",
     },
     {
       key: "4",
-      name: "John",
+      name: "Fohn",
       age: 42,
       address: "10 Downing Street",
     },
   ];
-
-  const onPageSizeChange = (page: number, pageSize: number) => {
+  //! for pagination
+  const onPaginationChange = (page: number, pageSize: number) => {
     console.log(page, "page", pageSize, "pageSIze");
   };
+
+  ///! table data config /
+
+  const paginationConfig = {
+    pageSize: 5,
+    total: 10,
+    pageSizeOptions: [5, 10, 20],
+    showSizeChanger: true,
+    onChange: onPaginationChange,
+  };
+
+  ///! on table change
+  const onTableChange = (pagination: any, filter: any, sorter: any) => {
+    const { order, field } = sorter;
+    console.log("🚀order:", order, field);
+  };
+
   return (
     <Table
       loading={false}
       columns={columns}
       dataSource={tableData}
-      pagination={{
-        pageSize: 5,
-        total: 10,
-        pageSizeOptions: [5, 10, 20],
-        showSizeChanger: true,
-        onChange: onPageSizeChange,
-      }}
+      pagination={paginationConfig}
+      onChange={onTableChange}
     />
   );
 };
