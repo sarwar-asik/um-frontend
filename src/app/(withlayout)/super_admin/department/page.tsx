@@ -3,12 +3,12 @@
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
 import { USER_ROLE } from "@/constants/role";
+import { useDepartmentsQuery } from "@/redux/api/deprtmentApi";
 
 import { Button } from "antd";
 import Link from "next/link";
 
 const DepartmentPage = () => {
-
   const columns = [
     {
       title: "Name",
@@ -33,6 +33,11 @@ const DepartmentPage = () => {
       },
     },
   ];
+
+  const {data, isLoading} = useDepartmentsQuery(undefined);
+  
+
+  console.log(data);
 
   const tableData = [
     {
@@ -65,15 +70,11 @@ const DepartmentPage = () => {
     console.log(page, "page", pageSize, "pageSIze");
   };
 
-
-
-
   ///! on table change
   const onTableChange = (pagination: any, filter: any, sorter: any) => {
     const { order, field } = sorter;
     console.log("🚀order:", order, field);
   };
-
 
   return (
     <div>
