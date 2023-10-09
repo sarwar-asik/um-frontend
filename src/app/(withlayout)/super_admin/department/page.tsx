@@ -16,6 +16,7 @@ import {
 import { Button, Input } from "antd";
 import Link from "next/link";
 import { useState } from "react";
+import dayjs from "dayjs"
 
 const DepartmentPage = () => {
   const query: Record<string, any> = {};
@@ -38,9 +39,9 @@ const DepartmentPage = () => {
     delay:600
   })
 
-  console.log(debouncedToken);
+  // console.log(debouncedToken);
   if(!!debouncedToken){
-    console.log("debouncedToken",!!debouncedToken);
+    // console.log("debouncedToken",!!debouncedToken);
     query["searchTerm"] = searchTerm;
   }
 
@@ -51,7 +52,7 @@ const DepartmentPage = () => {
   const departments = data?.departments;
   const meta = data?.meta;
 
-  console.log(departments);
+  // console.log(departments);
 
   const columns = [
     {
@@ -63,17 +64,23 @@ const DepartmentPage = () => {
       title: "createdAt",
       dataIndex: "createdAt",
       key: "createdAt",
-      //   sorter:true
-      sorter: (a: any, b: any) => a.age - b.age,
+        sorter:true,
+        render:function(data:any){
+          return data && dayjs(data).format("MMM D,YYYY hh:mm A")
+        }
+      // sorter: (a: any, b: any) => a.age - b.age,
+
     },
     {
       title: "Action",
       render: function (data: any) {
         return (
           <>
-            <Button onClick={() => console.log(data)} type="primary">
+            {/* <Button onClick={() => console.log(data)} type="primary">
               <EyeOutlined />
-            </Button>
+            </Button> */}
+
+            <Link href={`/super_admin/department/edit/${data?.id}`}>
             <Button
               style={{ margin: "5px" }}
               onClick={() => console.log(data)}
@@ -81,6 +88,7 @@ const DepartmentPage = () => {
             >
               <EditOutlined />
             </Button>
+            </Link>
             <Button onClick={() => console.log(data)} type="primary" danger>
               <UserDeleteOutlined />
             </Button>
