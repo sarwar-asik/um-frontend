@@ -1,17 +1,25 @@
 "use client";
 
+import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
 import { USER_ROLE } from "@/constants/role";
 import { useDepartmentsQuery } from "@/redux/api/deprtmentApi";
-import { EditOutlined, EyeOutlined, UserDeleteOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  EditOutlined,
+  EyeOutlined,
+  ReloadOutlined,
+  UserDeleteOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import Link from "next/link";
 import { useState } from "react";
 
 const DepartmentPage = () => {
   const query: Record<string, any> = {};
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [size, setSize] = useState<number>(10);
   const [sortBy, setSortBy] = useState<string>("");
@@ -20,14 +28,15 @@ const DepartmentPage = () => {
   query["page"] = page;
   query["sortBy"] = sortBy;
   query["sortOrder"] = sortOrder;
+  query["searchTerm"] = searchTerm;
   // console.log(query);
 
   const { data, isLoading } = useDepartmentsQuery({ ...query });
 
   // console.log(data);
-  // const { departments, meta } = data as any 
-  const departments = data?.departments
-  const meta = data?.meta
+  // const { departments, meta } = data as any
+  const departments = data?.departments;
+  const meta = data?.meta;
 
   console.log(departments);
 
@@ -48,17 +57,21 @@ const DepartmentPage = () => {
       title: "Action",
       render: function (data: any) {
         return (
-       <>
-          <Button onClick={() => console.log(data)} type="primary" >
-            <EyeOutlined/>
-          </Button>
-          <Button style={{margin:"5px"}} onClick={() => console.log(data)} type="primary" >
-            <EditOutlined/>
-          </Button>
-          <Button onClick={() => console.log(data)} type="primary" danger>
-            <UserDeleteOutlined/>
-          </Button>
-       </>
+          <>
+            <Button onClick={() => console.log(data)} type="primary">
+              <EyeOutlined />
+            </Button>
+            <Button
+              style={{ margin: "5px" }}
+              onClick={() => console.log(data)}
+              type="primary"
+            >
+              <EditOutlined />
+            </Button>
+            <Button onClick={() => console.log(data)} type="primary" danger>
+              <UserDeleteOutlined />
+            </Button>
+          </>
         );
       },
     },
@@ -101,10 +114,15 @@ const DepartmentPage = () => {
   const onTableChange = (pagination: any, filter: any, sorter: any) => {
     const { order, field } = sorter;
     // console.log("🚀order:", order, field);
-    setSortBy(field as string );
-    setSortOrder(order === "ascend" ? "asc" : "desc") 
+    setSortBy(field as string);
+    setSortOrder(order === "ascend" ? "asc" : "desc");
   };
 
+  const resetFilters = ()=>{
+    setSortBy("")
+    setSortOrder("")
+    setSearchTerm("")
+  }
   return (
     <div>
       <UMBreadCrumb
@@ -115,10 +133,26 @@ const DepartmentPage = () => {
           },
         ]}
       />
-      <h1>Manage department Pages</h1>
-      <Link href={`/${USER_ROLE.SUPER_ADMIN}/department/create`}>
-        <Button type="primary">Create department</Button>
-      </Link>
+
+      <ActionBar title="Manage department Pages">
+        <Input
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{ width: "20%" }}
+          type="text"
+          size="large"
+          placeholder="Search.."
+        />
+        <div >
+        <Link href={`/${USER_ROLE.SUPER_ADMIN}/department/create`}>
+          <Button type="primary">Create department</Button>
+        </Link>
+        {
+         ( !!sortBy || !!sortOrder || !! searchTerm) && (
+            <Button onClick={resetFilters} type="primary" style={{marginLeft:"5px"}}><ReloadOutlined/></Button>
+          )
+        }
+        </div>
+      </ActionBar>
 
       <UMTable
         loading={false}
