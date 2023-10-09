@@ -23,7 +23,11 @@ const beforeUpload = (file: RcFile) => {
   return isJpgOrPng && isLt2M;
 };
 
-const UploadImage: React.FC = () => {
+type ImageUploadProps ={
+  name?:string
+}
+
+const UploadImage= ({name}:ImageUploadProps) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState<string>();
   console.log(imageUrl);
@@ -52,15 +56,16 @@ const UploadImage: React.FC = () => {
   return (
     <>
       <Upload
-        name="avatar"
+        name={name}
         listType="picture-card"
         className="avatar-uploader"
         showUploadList={false}
-        action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
+        ///! created the file /api/file
+        action="/api/file"
         beforeUpload={beforeUpload}
         onChange={handleChange}
       >
-        {imageUrl ? <Image src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+        {imageUrl ? <Image src={imageUrl} alt="avatar" width={100} height={100} style={{ width: '100%' }} /> : uploadButton}
       </Upload>
     </>
   );

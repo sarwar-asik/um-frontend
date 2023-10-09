@@ -8,11 +8,13 @@ import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UploadImage from "@/components/ui/UploadImage";
 import {
   bloodGroupOptions,
-  departmentOptions,
+  // departmentOptions,
   genderOptions,
 } from "@/constants/global";
+import { useDepartmentsQuery } from "@/redux/api/deprtmentApi";
 import { adminSchema } from "@/schemas/admin";
 import { getUserInfo } from "@/service/auth.service";
+import { IDepartment } from "@/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Col, Row } from "antd";
 import { useRouter } from "next/navigation";
@@ -27,6 +29,20 @@ const CreateAdminPage = () => {
   const router = useRouter();
   // console.log(getUserInfo());
   // console.log(isLoggedIn());
+  const {data,isLoading} = useDepartmentsQuery({limit:100,page:1})
+  // console.log(data);
+
+  //@ts-ignore
+  const departments:IDepartment[]   = data?.departments;
+
+
+// console.log(departments);
+const departmentOptions =departments?.map(department=>{
+  return {
+    label:department?.title,
+    value:department?.id
+  }
+})
 
   const onSubmit: SubmitHandler<any> = async (data) => {
     try {
@@ -329,7 +345,7 @@ const CreateAdminPage = () => {
                 }}
                 span={8}
               >
-                <UploadImage />
+                <UploadImage name="file"/>
               </Col>
 
             </Row>
