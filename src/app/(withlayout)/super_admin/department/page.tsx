@@ -3,12 +3,12 @@
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
 import { USER_ROLE } from "@/constants/role";
-import { getUserInfo } from "@/service/auth.service";
+
 import { Button } from "antd";
 import Link from "next/link";
 
 const DepartmentPage = () => {
-  const { role } = getUserInfo() as any;
+
   const columns = [
     {
       title: "Name",
@@ -65,15 +65,8 @@ const DepartmentPage = () => {
     console.log(page, "page", pageSize, "pageSIze");
   };
 
-  // ///! table data config /
 
-  // const paginationConfig = {
-  //   pageSize: 5,
-  //   total: 10,
-  //   pageSizeOptions: [5, 10, 20],
-  //   showSizeChanger: true,
-  //   onChange: onPaginationChange,
-  // };
+
 
   ///! on table change
   const onTableChange = (pagination: any, filter: any, sorter: any) => {
@@ -81,7 +74,6 @@ const DepartmentPage = () => {
     console.log("🚀order:", order, field);
   };
 
-  //   console.log("from ma nageStudent", user);
 
   return (
     <div>
@@ -102,12 +94,12 @@ const DepartmentPage = () => {
         loading={false}
         columns={columns}
         dataSource={tableData}
-        pageSize={5}
-        totalPages={10}
+        showPagination={true}
+        pageSize={3}
+        totalPages={20}
         showSizeChanger={true}
         onPaginationChange={onPaginationChange}
         onTableChange={onTableChange}
-        showPagination={true}
       />
     </div>
   );

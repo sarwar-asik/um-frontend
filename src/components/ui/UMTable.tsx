@@ -36,12 +36,14 @@ const UMTable = ({
   const paginationConfig = showPagination
     ? {
         pageSize:pageSize,
-        totalPages:totalPages,
+        total:totalPages,
         pageSizeOptions: [5, 10, 20],
         showSizeChanger: showSizeChanger,
         onChange: onPaginationChange,
       }
     : false;
+
+    console.log(paginationConfig);
 
   ///! on table change
 //   const onTableChange = (pagination: any, filter: any, sorter: any) => {
