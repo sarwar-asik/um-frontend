@@ -3,7 +3,10 @@ import ActionBar from "@/components/ui/ActionBar";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import UMTable from "@/components/ui/UMTable";
 import { USER_ROLE } from "@/constants/role";
-import { useDepartmentsQuery } from "@/redux/api/deprtmentApi";
+import {
+  useDeleteDepartmentMutation,
+  useDepartmentsQuery,
+} from "@/redux/api/deprtmentApi";
 import { useDebounced } from "@/redux/hooks";
 import {
   EditOutlined,
@@ -13,10 +16,10 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 
-import { Button, Input } from "antd";
+import { Button, Input, message } from "antd";
 import Link from "next/link";
 import { useState } from "react";
-import dayjs from "dayjs"
+import dayjs from "dayjs";
 
 const DepartmentPage = () => {
   const query: Record<string, any> = {};
@@ -35,17 +38,18 @@ const DepartmentPage = () => {
   ///! debounced data for delay data  //
 
   const debouncedToken = useDebounced({
-    searchQuery:searchTerm,
-    delay:600
-  })
+    searchQuery: searchTerm,
+    delay: 600,
+  });
 
   // console.log(debouncedToken);
-  if(!!debouncedToken){
+  if (!!debouncedToken) {
     // console.log("debouncedToken",!!debouncedToken);
     query["searchTerm"] = searchTerm;
   }
 
   const { data, isLoading } = useDepartmentsQuery({ ...query });
+  const [deleteDepartment] = useDeleteDepartmentMutation();
 
   // console.log(data);
   // const { departments, meta } = data as any
@@ -53,6 +57,16 @@ const DepartmentPage = () => {
   const meta = data?.meta;
 
   // console.log(departments);
+  const deleteDepartmentHandler = async (id: string) => {
+    console.log(id);
+    message.loading("deleting department");
+    try {
+      await deleteDepartment(id);
+      message.success("deleted successfully")
+    } catch (error: any) {
+      message.error(error.message);
+    }
+  };
 
   const columns = [
     {
@@ -64,12 +78,11 @@ const DepartmentPage = () => {
       title: "createdAt",
       dataIndex: "createdAt",
       key: "createdAt",
-        sorter:true,
-        render:function(data:any){
-          return data && dayjs(data).format("MMM D,YYYY hh:mm A")
-        }
+      sorter: true,
+      render: function (data: any) {
+        return data && dayjs(data).format("MMM D,YYYY hh:mm A");
+      },
       // sorter: (a: any, b: any) => a.age - b.age,
-
     },
     {
       title: "Action",
@@ -81,15 +94,19 @@ const DepartmentPage = () => {
             </Button> */}
 
             <Link href={`/super_admin/department/edit/${data?.id}`}>
-            <Button
-              style={{ margin: "5px" }}
-              onClick={() => console.log(data)}
-              type="primary"
-            >
-              <EditOutlined />
-            </Button>
+              <Button
+                style={{ margin: "5px" }}
+                onClick={() => console.log(data)}
+                type="primary"
+              >
+                <EditOutlined />
+              </Button>
             </Link>
-            <Button onClick={() => console.log(data)} type="primary" danger>
+            <Button
+              onClick={() => deleteDepartmentHandler(data?.id)}
+              type="primary"
+              danger
+            >
               <UserDeleteOutlined />
             </Button>
           </>
@@ -139,11 +156,11 @@ const DepartmentPage = () => {
     setSortOrder(order === "ascend" ? "asc" : "desc");
   };
 
-  const resetFilters = ()=>{
-    setSortBy("")
-    setSortOrder("")
-    setSearchTerm("")
-  }
+  const resetFilters = () => {
+    setSortBy("");
+    setSortOrder("");
+    setSearchTerm("");
+  };
   return (
     <div>
       <UMBreadCrumb
@@ -163,15 +180,19 @@ const DepartmentPage = () => {
           size="large"
           placeholder="Search.."
         />
-        <div >
-        <Link href={`/${USER_ROLE.SUPER_ADMIN}/department/create`}>
-          <Button type="primary">Create department</Button>
-        </Link>
-        {
-         ( !!sortBy || !!sortOrder || !! searchTerm) && (
-            <Button onClick={resetFilters} type="primary" style={{marginLeft:"5px"}}><ReloadOutlined/></Button>
-          )
-        }
+        <div>
+          <Link href={`/${USER_ROLE.SUPER_ADMIN}/department/create`}>
+            <Button type="primary">Create department</Button>
+          </Link>
+          {(!!sortBy || !!sortOrder || !!searchTerm) && (
+            <Button
+              onClick={resetFilters}
+              type="primary"
+              style={{ marginLeft: "5px" }}
+            >
+              <ReloadOutlined />
+            </Button>
+          )}
         </div>
       </ActionBar>
 
