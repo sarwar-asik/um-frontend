@@ -25,7 +25,9 @@ export const axiosBaseQuery =
         contentType: contentType || "application/json"
       } })
       // console.log(result,"result from axiosBaseQuery.ts");
-      return { data: result.data }
+      // return { data: result.data }
+      return result
+
     } catch (axiosError) {
       let err = axiosError as AxiosError
       return {
