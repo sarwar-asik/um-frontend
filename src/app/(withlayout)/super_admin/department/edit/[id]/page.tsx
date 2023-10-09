@@ -5,7 +5,10 @@ import ActionBar from "@/components/ui/ActionBar";
 
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { USER_ROLE } from "@/constants/role";
-import { useDepartmentQuery } from "@/redux/api/deprtmentApi";
+import {
+  useDepartmentQuery,
+  useUpdateDepartmentMutation,
+} from "@/redux/api/deprtmentApi";
 import { Button, message } from "antd";
 import React from "react";
 import { SubmitHandler } from "react-hook-form";
@@ -15,29 +18,32 @@ type IdProps = {
 };
 
 const EditDepartmentPage = ({ params }: IdProps) => {
-//   console.log(
-//     "🚀 ~ file: page.tsx:8 ~ EditDepartmentPage ~ params:",
-//     params?.id
-//   );
+  //   console.log(
+  //     "🚀 ~ file: page.tsx:8 ~ EditDepartmentPage ~ params:",
+  //     params?.id
+  //   );
   const { id } = params;
 
-  const {data,isLoading}= useDepartmentQuery(id)
-//   console.log(data);
+  const { data, isLoading } = useDepartmentQuery(id);
+  const [updateDepartment] = useUpdateDepartmentMutation();
+  //   console.log(data);
 
-  const onSubmit: SubmitHandler<any> = async (data) => {
+  const onSubmit: SubmitHandler<any> = async (values: { title: string }) => {
     message.loading("updating.....");
     try {
-      console.log(data);
+      console.log(values);
+      await updateDepartment({ id, body: values });
 
       message.success("successfully updated");
     } catch (error: any) {
-      console.error(error, "for update department...");
+      //   console.error(error, "for update department...");
+
       message.error(error?.message);
     }
   };
-  const defaultValues:any ={
-    title:data?.title || ""
-  }
+  const defaultValues: any = {
+    title: data?.title || "",
+  };
   return (
     <div>
       <UMBreadCrumb
@@ -57,7 +63,7 @@ const EditDepartmentPage = ({ params }: IdProps) => {
 
       <Form submitHandler={onSubmit} defaultValues={defaultValues}>
         <FormInput type="text" name="title" size="large" label="Department" />
-        
+
         <Button htmlType="submit" type="primary" danger>
           Update
         </Button>

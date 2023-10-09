@@ -36,16 +36,16 @@ export const departmentApi = baseApi.injectEndpoints({
       }),
       providesTags: [tagTypes.department],
     }),
-    updateDepartment: build.query({
+    updateDepartment: build.mutation({
       query: (data) => ({
         url: `${DEPARTMENT_URL}/${data?.id}`,
         method: "PATCH",
         data: data?.body,
       }),
-      providesTags: [tagTypes.department],
+      invalidatesTags: [tagTypes.department],
     }),
   }),
 });
 
-export const { useDepartmentsQuery, useCreateDepartmentMutation,useDepartmentQuery,useUpdateDepartmentQuery } =
+export const { useDepartmentsQuery, useCreateDepartmentMutation,useDepartmentQuery,useUpdateDepartmentMutation } =
   departmentApi;
