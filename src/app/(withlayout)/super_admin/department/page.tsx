@@ -1,6 +1,7 @@
 "use client";
 
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
+import UMTable from "@/components/ui/UMTable";
 import { USER_ROLE } from "@/constants/role";
 import { getUserInfo } from "@/service/auth.service";
 import { Button } from "antd";
@@ -17,8 +18,8 @@ const DepartmentPage = () => {
           <UMBreadCrumb
             items={[
               {
-                label: `${role}`,
-                link: `/${role}`,
+                label: USER_ROLE.SUPER_ADMIN,
+                link: `/${ USER_ROLE.SUPER_ADMIN}`,
               }
             ]}
           />
@@ -26,6 +27,9 @@ const DepartmentPage = () => {
           <Link href={`/${USER_ROLE.SUPER_ADMIN}/department/create`}>
           <Button type="primary">Create department</Button>
           </Link>
+
+          <UMTable></UMTable>
+          
         </div>
       );
 };
