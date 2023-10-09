@@ -29,11 +29,18 @@ export type IGenericErrorResponse = {
   errorMessages: IGenericErrorMessage[];
 };
 
-
+//! for department
 export interface IDepartment{
 id:string,
 title:string,
 createdAt:string
 updatedAt:string
 _v:number
+}
+
+
+//! form admin 
+
+export interface IAdmin {
+
 }
