@@ -1,32 +1,24 @@
-"use client";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
-import { USER_ROLE } from "@/constants/role";
-import { getUserInfo } from "@/service/auth.service";
 import { Button } from "antd";
 import Link from "next/link";
-import React from "react";
 
-const ManageFaultyPage = () => {
-  const { role } = getUserInfo() as any;
-
-  //   console.log("from ma nageStudent", user);
-
+const ManageFacultyPage = () => {
   return (
     <div>
       <UMBreadCrumb
         items={[
           {
-            label: `${role}`,
-            link: `/${role}`,
+            label: "super_admin",
+            link: "/super_admin",
           },
         ]}
       />
-      <h1>Manage faculty Pages</h1>
-      <Link href={`/${USER_ROLE.SUPER_ADMIN}/manage-faculty/create`}>
-        <Button type="primary">Create faculty</Button>
+      <h1>Faculty List</h1>
+      <Link href="/super_admin/manage-faculty/create">
+        <Button type="primary">Create</Button>
       </Link>
     </div>
   );
 };
 
-export default ManageFaultyPage;
+export default ManageFacultyPage;

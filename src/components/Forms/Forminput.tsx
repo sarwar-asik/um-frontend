@@ -4,10 +4,10 @@ import { Input } from "antd";
 import React from "react";
 import { Controller, useForm, useFormContext } from "react-hook-form";
 interface IInput {
-  type?: string;
   name: string;
-  value?: string | string[] | undefined;
+  type?: string;
   size?: `large` | "small";
+  value?: string | string[] | undefined;
   id?: string;
   placeholder?: string;
   validation?: object;
@@ -17,11 +17,11 @@ interface IInput {
 const FormInput = ({
   name,
   type,
-  size,
+  size="large",
+  value,
   id,
   placeholder,
   validation,
-  value,
   label,
 }: IInput) => {
   const {
@@ -44,6 +44,7 @@ const FormInput = ({
             <Input.Password
               type={type}
               size={size}
+              id={id}
               placeholder={placeholder}
               {...field}
               value={value ? value : field.value}

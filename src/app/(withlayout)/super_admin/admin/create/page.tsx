@@ -16,10 +16,11 @@ import { useDepartmentsQuery } from "@/redux/api/deprtmentApi";
 import { adminSchema } from "@/schemas/admin";
 import { getUserInfo } from "@/service/auth.service";
 import { IDepartment } from "@/types";
-import { yupResolver } from "@hookform/resolvers/yup";
+
 import { Button, Col, Row, message } from "antd";
 import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 type FormValues = {
   id: string;
@@ -30,39 +31,41 @@ const CreateAdminPage = () => {
   const router = useRouter();
   // console.log(getUserInfo());
   // console.log(isLoggedIn());
-  const {data,isLoading} = useDepartmentsQuery({limit:100,page:1})
+  const { data, isLoading } = useDepartmentsQuery({ limit: 100, page: 1 });
   const [addAdminWithFormData] = useAddAdminWithFormDataMutation();
-  // console.log(data);
-
   //@ts-ignore
-  const departments:IDepartment[]   = data?.departments;
+  const departments: IDepartment[] = data?.departments;
 
+  const departmentOptions =
+    departments &&
+    departments?.map((department) => {
+      return {
+        label: department?.title,
+        value: department?.id,
+      };
+    });
 
-// console.log(departments);
-const departmentOptions =departments?.map(department=>{
-  return {
-    label:department?.title,
-    value:department?.id
-  }
-})
+  const onSubmit = async (values: any) => {
+    const obj = { ...values };
+    const file = obj["file"];
+    // console.log(obj,"and", file);
+    delete obj["file"];
+    const data = JSON.stringify(obj);
+    const formData = new FormData();
+    formData.append("file", file as Blob);
+    formData.append("data", data);
+    message.loading("Creating...");
 
-const onSubmit = async (values: any) => {
-  console.log(values);
-  const obj = { ...values };
-  const file = obj["file"];
-  delete obj["file"];
-  const data = JSON.stringify(obj);
-  const formData = new FormData();
-  formData.append("file", file as Blob);
-  formData.append("data", data);
-  message.loading("Creating...");
-  try {
-    await addAdminWithFormData(formData);
-    message.success("Admin created successfully!");
-  } catch (err: any) {
-    console.error(err.message);
-  }
-};
+    // console.log(formData, "formData....",obj);
+
+    try {
+      console.log(formData,"fffff");
+      await addAdminWithFormData(formData);
+      message.success("Admin created successfully!");
+    } catch (error) {
+      console.error(error, "for login submit...");
+    }
+  };
 
   const { role } = getUserInfo() as any;
 
@@ -76,14 +79,14 @@ const onSubmit = async (values: any) => {
           },
           {
             label: `admin`,
-            link: `/super_admin/admin`,
+            link: `/${role}`,
           },
         ]}
       />
       <h1>Create Admin</h1>
 
       <section>
-      <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}>
+        <Form submitHandler={onSubmit}>
           <div
             style={{
               border: "1px solid #d9d9d9",
@@ -306,7 +309,6 @@ const onSubmit = async (values: any) => {
                   name="admin.presentAddress"
                   label="Present address"
                   row={4}
-
                 />
               </Col>
 
@@ -319,7 +321,8 @@ const onSubmit = async (values: any) => {
               </Col>
             </Row>
           </div>
-          <Button htmlType="submit" type="primary">
+          {/* submit BUtton */}
+          <Button htmlType="submit" type="primary" danger>
             Create
           </Button>
         </Form>

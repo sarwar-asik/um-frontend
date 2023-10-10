@@ -1,6 +1,6 @@
 "use client"
 
-import React, { ReactElement, ReactNode, useEffect } from "react";
+import { ReactElement, ReactNode, useEffect } from "react";
 import {
   useForm,
   FormProvider,
@@ -22,7 +22,6 @@ const Form = ({ children, submitHandler, defaultValues ,resolver}: FormProps) =>
 
   if (!!defaultValues) formConfig["defaultValues"] = defaultValues;
   if (!!resolver) formConfig["resolver"] = resolver;
-
   const methods = useForm<FormProps>(formConfig);
 
   const { handleSubmit, reset } = methods;

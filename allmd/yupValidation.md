@@ -39,7 +39,7 @@ export const getErrorMessageByPropertyName = (
 ) => {
   const properties = propertyPath.split(".");
   let value = obj;
-  for (const prop of properties) {
+  for (let prop of properties) {
     if(value[prop]){
         value =value[prop]
     }
