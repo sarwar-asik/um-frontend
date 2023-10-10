@@ -59,7 +59,7 @@ const CreateAdminPage = () => {
     // console.log(formData, "formData....",obj);
 
     try {
-      console.log(formData,"fffff");
+      console.log(formData, "fffff");
       await addAdminWithFormData(formData);
       message.success("Admin created successfully!");
     } catch (error) {

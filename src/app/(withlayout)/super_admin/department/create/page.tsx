@@ -12,19 +12,18 @@ import { SubmitHandler } from "react-hook-form";
 const CreateDepartmentPage = () => {
   const { role } = getUserInfo() as any;
   // console.log(role);
-const [createDepartment] = useCreateDepartmentMutation()
+  const [createDepartment] = useCreateDepartmentMutation();
 
   const onSubmit: SubmitHandler<any> = async (data) => {
-    message.loading("creating.....")
+    message.loading("creating.....");
     try {
       console.log(data);
-      const res = await createDepartment(data)
-      console.log(res,"ress");
-      message.success("successfully created")
-
-    } catch (error:any) {
+      const res = await createDepartment(data);
+      console.log(res, "ress");
+      message.success("successfully created");
+    } catch (error: any) {
       console.error(error, "for create department...");
-      message.error(error?.message)
+      message.error(error?.message);
     }
   };
   return (

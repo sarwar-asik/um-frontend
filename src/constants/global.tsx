@@ -1,69 +1,136 @@
 export const genderOptions = [
-  {
-    label: "Male",
-    value: "male",
-  },
-  {
-    label: "Female",
-    value: "female",
-  },
-  {
-    label: "Others",
-    value: "others",
-  },
-];
-
-export const departmentOptions = [
-    { label: "HR", value: "hr manager" },
-    { label: "Finance", value: "finance" },
-    { label: "Management Department", value: "managementDepartment" }
-];
-export const bloodGroupOptions = [
-    { label: "AB+", value: "AB+ manager" },
-    { label: "AB-", value: "AB- manager" },
-    { label: "A+", value: "A+ manager" },
-    { label: "A-", value: "A- manager" },
-    { label: "B+", value: "B+ manager" },
-    { label: "B-", value: "B- manager" },
-    { label: "O+", value: "O+ manager" },
-    { label: "O-", value: "O- manager" },
- 
-];
-
-export const facultyOptions = [
 	{
-		label: 'Engineering',
-		value: 'engineering',
+	  label: "Male",
+	  value: "male",
 	},
 	{
-		label: 'Faculty of science and engineering',
-		value: 'Faculty of science and engineering',
-	},
-]
-export const acDepartmentOptions = [
-	{
-		label: 'CSE',
-		value: 'cse',
+	  label: "Female",
+	  value: "female",
 	},
 	{
-		label: 'Software Engineering',
-		value: 'software engineering',
+	  label: "Others",
+	  value: "others",
 	},
-]
-export const acSemesterOptions = [
+  ];
+  export const departmentOptions = [
 	{
-		label: 'Fall 2023',
-		value: 'fall23',
-	},
-	{
-		label: 'Autumn 2023',
-		value: 'autumn2023',
+	  label: "HR",
+	  value: "hr manager",
 	},
 	{
-		label: 'Summer 2023',
-		value: 'summer23',
+	  label: "Finance",
+	  value: "finance",
 	},
-]
-
-
-
+	{
+	  label: "Management",
+	  value: "management",
+	},
+  ];
+  
+  export const bloodGroupOptions = [
+	{
+	  label: "A+",
+	  value: "A+",
+	},
+	{
+	  label: "A-",
+	  value: "A-",
+	},
+	{
+	  label: "B+",
+	  value: "B+",
+	},
+	{
+	  label: "B-",
+	  value: "B-",
+	},
+	{
+	  label: "AB+",
+	  value: "AB+",
+	},
+	{
+	  label: "AB-",
+	  value: "AB-",
+	},
+	{
+	  label: "O+",
+	  value: "O+",
+	},
+	{
+	  label: "O-",
+	  value: "O-",
+	},
+  ];
+  
+  export const facultyOptions = [
+	{
+	  label: "Engineering",
+	  value: "engineering",
+	},
+	{
+	  label: "Faculty of science and engineering",
+	  value: "Faculty of science and engineering",
+	},
+  ];
+  export const acDepartmentOptions = [
+	{
+	  label: "CSE",
+	  value: "cse",
+	},
+	{
+	  label: "Software Engineering",
+	  value: "software engineering",
+	},
+  ];
+  export const acSemesterOptions = [
+	{
+	  label: "Fall 2023",
+	  value: "fall23",
+	},
+	{
+	  label: "Autumn 2023",
+	  value: "autumn2023",
+	},
+	{
+	  label: "Summer 2023",
+	  value: "summer23",
+	},
+  ];
+  
+  export const months = [
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December",
+  ];
+  export const monthOptions = months.map((month: string) => {
+	return {
+	  label: month,
+	  value: month,
+	};
+  });
+  
+  export const days = [
+	"SATURDAY",
+	"SUNDAY",
+	"MONDAY",
+	"TUESDAY",
+	"WEDNESDAY",
+	"THURSDAY",
+	"FRIDAY",
+  ];
+  export const daysOptions = days.map((day: string) => {
+	return {
+	  label: day,
+	  value: day,
+	};
+  });
+  

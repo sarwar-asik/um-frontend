@@ -6,7 +6,7 @@ import { Controller, useForm, useFormContext } from "react-hook-form";
 
 
 
-type selectOptions ={
+export type selectOptions ={
     label:string;
     value:string
 }
@@ -18,6 +18,7 @@ type SelectFieldsProps = {
   label?: string;
   options:selectOptions[],
   defaultValue?:selectOptions
+  handleChange?: (el: string) => void;
 };
 
 const FormSelectField = ({
@@ -27,7 +28,8 @@ const FormSelectField = ({
   placeholder,
   label,
   options,
-  defaultValue
+  defaultValue,
+  handleChange
 }: SelectFieldsProps) => {
   const { control } = useFormContext();
 
@@ -39,7 +41,8 @@ const FormSelectField = ({
         name={name}
         render={({ field:{value,onChange} }) => (
           <Select
-            onChange={onChange}
+            // onChange={onChange}
+            onChange={handleChange ? handleChange : onChange}
             options={options}
             value={value}
             size={size}

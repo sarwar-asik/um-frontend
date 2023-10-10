@@ -22,7 +22,6 @@ const LoginPage = () => {
   const [userLogin] = useUserLoginMutation();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-
       const res = await userLogin({ ...data }).unwrap();
       console.log("🚀 ~ file: page.tsx res:", res);
       storeUserInfo({ accessToken: res?.accessToken });
