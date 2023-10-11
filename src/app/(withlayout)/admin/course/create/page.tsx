@@ -1,5 +1,4 @@
 "use client";
-
 import Form from "@/components/Forms/Form";
 import FormInput from "@/components/Forms/Forminput";
 import FormMultiSelectField from "@/components/Forms/FormMultiSelectField";
@@ -8,9 +7,11 @@ import { selectOptions } from "@/components/Forms/FormSelectFields";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { useAddCourseMutation, useCoursesQuery } from "@/redux/api/courseApi";
 import { Button, Col, Row, message } from "antd";
+import { useRouter } from "next/navigation";
 
 const CreateCoursePage = () => {
   const [addCourse] = useAddCourseMutation();
+  const router = useRouter()
 
   const { data, isLoading } = useCoursesQuery({ limit: 10, page: 1 });
 
@@ -32,14 +33,20 @@ const CreateCoursePage = () => {
         };
       }
     );
+    // console.log("🚀 ~ file: page.tsx:35 ~ onSubmit ~ coursePreRequisitesOptions:", coursePreRequisitesOptions)
+    // console.log(data,"coursedata");
 
-    data.coursePreRequisites = coursePreRequisitesOptions;
+    // data.coursePreRequisites = coursePreRequisitesOptions;
+    data.preRequisiteCourses = coursePreRequisitesOptions;
+    delete data.coursePreRequisites;
 
     message.loading("Creating.....");
     try {
+      console.log(data);
       const res = await addCourse(data).unwrap();
       if (res?.id) {
         message.success("Course created successfully");
+        router.push("/admin/course")
       }
     } catch (err: any) {
       console.error(err.message);
