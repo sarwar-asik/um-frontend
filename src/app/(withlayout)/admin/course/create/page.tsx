@@ -8,14 +8,17 @@ import { selectOptions } from "@/components/Forms/FormSelectFields";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { useAddCourseMutation, useCoursesQuery } from "@/redux/api/courseApi";
 import { Button, Col, Row, message } from "antd";
+import { useRouter } from "next/navigation";
 
 const CreateCoursePage = () => {
+  
+  const router= useRouter()
   const [addCourse] = useAddCourseMutation();
 
   const { data, isLoading } = useCoursesQuery({ limit: 10, page: 1 });
 
   const courses = data?.courses;
-  const coursesOptions = courses?.map((course) => {
+  const coursesOptions = courses?.map((course:any) => {
     return {
       label: course?.title,
       value: course?.id,
@@ -33,13 +36,21 @@ const CreateCoursePage = () => {
       }
     );
 
-    data.coursePreRequisites = coursePreRequisitesOptions;
+   // console.log("🚀 ~ file: page.tsx:35 ~ onSubmit ~ coursePreRequisitesOptions:", coursePreRequisitesOptions)
+    // console.log(data,"coursedata");
+
+    // data.coursePreRequisites = coursePreRequisitesOptions;
+    data.preRequisiteCourses = coursePreRequisitesOptions;
+    delete data.coursePreRequisites;
+
 
     message.loading("Creating.....");
     try {
       const res = await addCourse(data).unwrap();
+      
       if (res?.id) {
         message.success("Course created successfully");
+        router.push("/admin/course")
       }
     } catch (err: any) {
       console.error(err.message);

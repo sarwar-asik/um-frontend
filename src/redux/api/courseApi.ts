@@ -4,6 +4,7 @@ import { tagTypes } from "../tag-types";
 
 const COURSE_URL = "/courses";
 
+
 export const courseApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     // get all
