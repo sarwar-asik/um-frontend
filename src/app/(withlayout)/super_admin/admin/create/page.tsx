@@ -86,7 +86,7 @@ const CreateAdminPage = () => {
       <h1>Create Admin</h1>
 
       <section>
-        <Form submitHandler={onSubmit}>
+        <Form submitHandler={onSubmit} resolver={yupResolver(adminSchema)}  >
           <div
             style={{
               border: "1px solid #d9d9d9",

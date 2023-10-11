@@ -1,5 +1,5 @@
 import { useAcademicDepartmentsQuery } from "@/redux/api/academic/departmentApi";
-import FormSelectField, { SelectOptions } from "./FormSelectField";
+import FormSelectField, { selectOptions } from "./FormSelectFields";
 import { useSemesterRegistrationsQuery } from "@/redux/api/semesterRegistrationApi";
 
 type SemesterRegistrationFieldProps = {
@@ -34,7 +34,7 @@ const SemesterRegistrationField = ({
     <FormSelectField
       name={name}
       label={label}
-      options={semesterRegistrationsOptions as SelectOptions[]}
+      options={semesterRegistrationsOptions as selectOptions[]}
       handleChange={(e) => onChange(e)}
     />
   );

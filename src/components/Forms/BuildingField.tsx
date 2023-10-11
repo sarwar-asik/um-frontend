@@ -1,4 +1,4 @@
-import FormSelectField, { SelectOptions } from "./FormSelectField";
+import FormSelectField, { selectOptions } from "./FormSelectFields";
 import { useBuildingsQuery } from "@/redux/api/buildingApi";
 
 const BuildingField = () => {
@@ -18,7 +18,7 @@ const BuildingField = () => {
     <FormSelectField
       name="building"
       label="building"
-      options={buildingsOptions as SelectOptions[]}
+      options={buildingsOptions as selectOptions[]}
     />
   );
 };

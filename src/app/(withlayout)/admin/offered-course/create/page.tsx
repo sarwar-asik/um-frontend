@@ -68,7 +68,7 @@ const CreateOfferedCoursePage = () => {
 
             <div style={{ margin: "10px 0px" }}>
               <ACDepartmentField
-              onChange={()=>console.log("updating")}
+                onChange={() => console.log("updating")}
                 name="academicDepartmentId"
                 label="Academic department"
               />
