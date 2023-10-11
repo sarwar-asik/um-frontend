@@ -1,5 +1,5 @@
 import { useRoomsQuery } from "@/redux/api/roomApi";
-import FormSelectField, { SelectOptions } from "./FormSelectField";
+import FormSelectField, { selectOptions } from "./FormSelectFields";
 
 type RoomProps = {
   name: string;
@@ -24,7 +24,7 @@ const RoomField = ({ name }: RoomProps) => {
     <FormSelectField
       name={name}
       label="Room"
-      options={roomsOptions as SelectOptions[]}
+      options={roomsOptions as selectOptions[]}
     />
   );
 };

@@ -8,9 +8,12 @@ import StepperForm from "@/components/stepperForm/stepperForm";
 import UMBreadCrumb from "@/components/ui/UMBreadCrumb";
 import { useAddStudentWithFormDataMutation } from "@/redux/api/studentApi";
 import { message } from "antd";
+import { useRouter } from "next/navigation";
 
 const CreateStudentPage = () => {
+  
   const [addStudentWithFormData] = useAddStudentWithFormDataMutation();
+  const router =useRouter()
   const steps = [
     {
       title: "Student Information",
@@ -32,17 +35,28 @@ const CreateStudentPage = () => {
 
   const handleStudentSubmit = async (values: any) => {
     const obj = { ...values };
+    console.log("🚀 ~ file: page.tsx:35 ~ handleStudentSubmit ~ obj:", obj)
     const file = obj["file"];
     delete obj["file"];
     const data = JSON.stringify(obj);
     const formData = new FormData();
     formData.append("file", file as Blob);
     formData.append("data", data);
+
+
+    // console.log("values:", values);
+    // console.log("file:", file);
+    // console.log("data:", data);
+
+    // console.log("formData:", formData);
+
     message.loading("Creating...");
     try {
+      console.log(formData, "ffffff");
       const res = await addStudentWithFormData(formData);
       if (!!res) {
         message.success("Student created successfully!");
+        router.push("/admin/manage-student")
       }
     } catch (err: any) {
       console.error(err.message);

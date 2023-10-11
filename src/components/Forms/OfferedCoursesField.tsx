@@ -22,7 +22,7 @@ const OfferedCoursesField = ({ name, label }: MultiSelectFieldProps) => {
       <FormMultiSelectField
         name={name}
         label={label}
-        options={coursesOptions as SelectOptions[]}
+        options={coursesOptions as selectOptions[]}
       />
     </>
   );

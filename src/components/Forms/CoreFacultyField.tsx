@@ -1,5 +1,5 @@
 import { useFacultiesQuery } from "@/redux/api/facultyApi";
-import FormSelectField, { SelectOptions } from "./FormSelectField";
+import FormSelectField, { selectOptions } from "./FormSelectFields";
 
 type FacultyProps = {
   name: string;

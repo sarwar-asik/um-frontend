@@ -1,12 +1,10 @@
 import { useAcademicDepartmentsQuery } from "@/redux/api/academic/departmentApi";
-import FormSelectField from "./FormSelectFields";
-import { SelectOptions } from "./FormMultiSelectField";
-// import FormSelectField, { SelectOptions } from "./FormSelectField";
+import FormSelectField, { selectOptions } from "./FormSelectFields";
 
 type ACDepartmentFieldProps = {
   name: string;
   label?: string;
-  onChange: (e: any) => void;
+  onChange?: (e: any) => void;
 };
 
 const ACDepartmentField = ({
@@ -30,8 +28,8 @@ const ACDepartmentField = ({
     <FormSelectField
       name={name}
       label={label}
-      options={acDepartmentOptions as SelectOptions[]}
-      handleChange={(e) => onChange(e)}
+      options={acDepartmentOptions as selectOptions[]}
+      // handleChange={(e) => onChange(e)}
     />
   );
 };
